@@ -68,6 +68,7 @@ public class CylinderLogic : MonoBehaviour
     /// <returns>Масса цилиндра</returns>
     public double GetMass()
     {
+        // TODO: Проверить правильность массы
         return (Math.PI * radius * radius) * length * MaterialType.GetDensity();
     }
 }
