@@ -10,27 +10,27 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 9218ca4feecd6d14894b5cfced893536, type: 3}
       propertyPath: m_LocalScale.x
-      value: 7.259521
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 9218ca4feecd6d14894b5cfced893536, type: 3}
       propertyPath: m_LocalScale.y
-      value: 7.259521
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 9218ca4feecd6d14894b5cfced893536, type: 3}
       propertyPath: m_LocalScale.z
-      value: 14.519042
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 9218ca4feecd6d14894b5cfced893536, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.11
+      value: 1.1106614
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 9218ca4feecd6d14894b5cfced893536, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.439
+      value: 1.289
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 9218ca4feecd6d14894b5cfced893536, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 4.271
+      value: 4.2717605
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 9218ca4feecd6d14894b5cfced893536, type: 3}
       propertyPath: m_LocalRotation.w
@@ -60,6 +60,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 9218ca4feecd6d14894b5cfced893536, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 8486b7f64f9c3fd4db599631a939a154, type: 2}
     - target: {fileID: 919132149155446097, guid: 9218ca4feecd6d14894b5cfced893536, type: 3}
       propertyPath: m_Name
       value: cylinder
@@ -77,6 +81,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 9218ca4feecd6d14894b5cfced893536, type: 3}
       insertIndex: -1
       addedObject: {fileID: 5790943349856820020}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 9218ca4feecd6d14894b5cfced893536, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: -380552118899365819}
   m_SourcePrefab: {fileID: 100100000, guid: 9218ca4feecd6d14894b5cfced893536, type: 3}
 --- !u!1 &2748564189925361255 stripped
 GameObject:
@@ -91,7 +98,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2748564189925361255}
   serializedVersion: 5
-  m_Mass: 4
+  m_Mass: 1
   m_LinearDamping: 0
   m_AngularDamping: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
@@ -258,3 +265,21 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.020000001, y: 0.019999998, z: 0.019999998}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &-380552118899365819
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2748564189925361255}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56140d913bf17e345be785411eaedfc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CylinderLogic
+  baseMinRadius: 5
+  baseMaxRadius: 5
+  baseRadiusError: 0.03
+  baseMinLength: 10
+  baseMaxLength: 15
+  baseLengthError: 0.1
