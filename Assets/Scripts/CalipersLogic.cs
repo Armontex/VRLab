@@ -1,23 +1,21 @@
 using UnityEngine;
+using UnityEngine.Custom;
 
-public class CalipersLogic : MonoBehaviour
+public class CalipersLogic : MonoBehaviour, ITool
 {
     [SerializeField] private double measurementError = 0.00005;
 
-    private void OnTriggerEnter(Collider other)
-    {
-        CylinderLogic cylinder = other.GetComponent<CylinderLogic>();
-        if (cylinder != null)
-        {
-            double measuredLength = GetLength(cylinder);
-            Debug.Log($"Измеренная длина: {measuredLength:F5}");
-        }
-    }
-
-    public double GetLength(CylinderLogic cylinder)
+    protected double GetLength(CylinderLogic cylinder)
     {
         double realLength = cylinder.GetLength();
         double noise = (Random.value * 2 - 1) * measurementError;
         return realLength + noise;
+    }
+
+    public double Use(CylinderLogic cylinderLogic)
+    {
+        double measuredLength = GetLength(cylinderLogic);
+        Debug.Log($"Calipers used: {measuredLength}");
+        return measuredLength;
     }
 }

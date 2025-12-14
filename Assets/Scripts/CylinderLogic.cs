@@ -5,23 +5,23 @@ using UnityEngine.Custom;
 
 public class CylinderLogic : MonoBehaviour
 {
-    // Радиус
-    [SerializeField] private double baseMinRadius = 5;
-    [SerializeField] private double baseMaxRadius = 5;
-    [SerializeField] private double baseRadiusError = 0.03;
+    // Radius
+    [SerializeField] private double baseMinRadius = 0.05;
+    [SerializeField] private double baseMaxRadius = 0.08;
+    [SerializeField] private double baseRadiusError = 0.003;
     private double radius;
 
-    // Длинна
-    [SerializeField] private double baseMinLength = 10;
-    [SerializeField] private double baseMaxLength = 15;
-    [SerializeField] private double baseLengthError = 0.1;
+    // Length
+    [SerializeField] private double baseMinLength = 0.1;
+    [SerializeField] private double baseMaxLength = 0.15;
+    [SerializeField] private double baseLengthError = 0.005;
     private double length;
 
 
-    // Масса
+    // Material
     public CylinderMaterialType MaterialType { get; private set; }
 
-    // Прочее
+    // Other
     private readonly System.Random rnd = new();
     private const double rangeNumber = 0.5;
 
@@ -37,38 +37,21 @@ public class CylinderLogic : MonoBehaviour
         length = UnityEngine.Random.Range((float)baseMinLength, (float)baseMaxLength);
     }
 
-    void Update()
-    {
-
-    }
-
-    /// <summary>
-    /// Получить радиус цилиндра (By Идея 2)
-    /// </summary>
-    /// <returns>Радиус цилиндра</returns>
     public double GetRadius()
     {
         double micro = (rnd.NextDouble() - rangeNumber) * baseRadiusError;
         return radius + micro;
     }
 
-    /// <summary>
-    /// Получить длинну цилиндра
-    /// </summary>
-    /// <returns>Длинна цилиндра</returns>
     public double GetLength()
     {
         double micro = (rnd.NextDouble() - rangeNumber) * baseLengthError;
         return length + micro;
     }
 
-    /// <summary>
-    /// Получить массу цилиндра
-    /// </summary>
-    /// <returns>Масса цилиндра</returns>
     public double GetMass()
     {
-        // TODO: Проверить правильность массы
+        // TODO: пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
         return (Math.PI * radius * radius) * length * MaterialType.GetDensity();
     }
 }

@@ -8,24 +8,24 @@ public class ScaleButton : MonoBehaviour
 {
     public ScalePlatform scale;
     public TMP_Text resultText;
-
+    
     void Start()
     {
         XRSimpleInteractable interactable = GetComponent<XRSimpleInteractable>();
 
         if (interactable == null)
         {
-            Debug.LogError("Нет XRSimpleInteractable на кнопке!");
+            Debug.LogError("пїЅпїЅпїЅ XRSimpleInteractable пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ!");
             return;
         }
 
         interactable.selectEntered.AddListener(OnButtonPressed);
-        Debug.Log("Кнопка готова к работе в VR");
+        Debug.Log("пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ VR");
     }
 
     void OnButtonPressed(SelectEnterEventArgs args)
     {
-        Debug.Log("Кнопка нажата в VR!");
+        Debug.Log("пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ VR!");
         Weigh();
     }
 
@@ -33,15 +33,15 @@ public class ScaleButton : MonoBehaviour
     {
         if (scale == null)
         {
-            Debug.LogError("Не назначены весы!");
+            Debug.LogError("пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ!");
             return;
         }
 
         GameObject obj = scale.GetObjectOnScale();
         if (obj == null)
         {
-            Debug.Log("На весах ничего нет");
-            if (resultText != null) resultText.text = "Пусто";
+            Debug.Log("пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ");
+            if (resultText != null) resultText.text = "пїЅпїЅпїЅпїЅпїЅ";
             return;
         }
 
@@ -49,15 +49,15 @@ public class ScaleButton : MonoBehaviour
         if (cylinder != null)
         {
             double mass = cylinder.GetMass();
-            Debug.Log($"Масса: {mass:F4} кг");
+            Debug.Log($"пїЅпїЅпїЅпїЅпїЅ: {mass:F4} пїЅпїЅ");
 
             if (resultText != null)
-                resultText.text = $"{mass:F4} кг";
+                resultText.text = $"{mass:F4} пїЅпїЅ";
         }
         else
         {
-            Debug.Log("Не цилиндр");
-            if (resultText != null) resultText.text = "Ошибка";
+            Debug.Log("пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ");
+            if (resultText != null) resultText.text = "пїЅпїЅпїЅпїЅпїЅпїЅ";
         }
     }
 }

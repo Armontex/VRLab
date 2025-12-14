@@ -32,3 +32,6 @@ UserSettings/
 
 # ==== VS ====
 .vs/
+.vscode/
+
+VRLab.slnx

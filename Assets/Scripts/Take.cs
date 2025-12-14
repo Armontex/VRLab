@@ -1,8 +1,13 @@
 using UnityEngine;
+using UnityEngine.Custom;
 using UnityEngine.InputSystem;
+using UnityEngine.XR.Interaction.Toolkit;
 
-public class Take : MonoBehaviour
+[RequireComponent(typeof(Rigidbody))]
+public class Take : MonoBehaviour, IHoverable
 {
+    public static Take CurrentEquipped { get; private set; }
+
     [SerializeField] private Transform rightHand;
     [SerializeField] private float maxDistance = 3f;
     [SerializeField] private InputActionReference takeActionReference;
@@ -12,7 +17,7 @@ public class Take : MonoBehaviour
     private Rigidbody rb;
 
     private bool isHovered = false;
-    private bool isEquipped = false;
+    public bool IsEquipped {get; private set;} = false;
 
     private void Start()
     {
@@ -31,14 +36,16 @@ public class Take : MonoBehaviour
         takeActionReference.action.Disable();
     }
 
-    public void OnHoverEnter() => isHovered = true;
-    public void OnHoverExit() => isHovered = false;
+    public void OnHoverEnter(HoverEnterEventArgs args) => isHovered = true;
+    public void OnHoverExit(HoverEnterEventArgs args) => isHovered = false;
 
     private void OnTakePerformed(InputAction.CallbackContext context)
     {
-        if (!isEquipped)
+        if (!IsEquipped)
         {
             if (!isHovered) return;
+            if (CurrentEquipped != null) return;
+            
             float distance = Vector3.Distance(rightHand.position, transform.position);
             if (distance > maxDistance) return;
 
@@ -52,13 +59,16 @@ public class Take : MonoBehaviour
         rb.isKinematic = true;
         transform.SetParent(rightHand);
         transform.SetLocalPositionAndRotation(positionOffset, Quaternion.Euler(rotationOffset));
-        isEquipped = true;
+        IsEquipped = true;
+        CurrentEquipped = this;
     }
 
     private void DropItem()
     {
         rb.isKinematic = false;
         transform.SetParent(null);
-        isEquipped = false;
+        IsEquipped = false;
+        if (CurrentEquipped == this)
+            CurrentEquipped = null;
     }
 }
