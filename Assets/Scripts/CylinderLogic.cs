@@ -51,7 +51,6 @@ public class CylinderLogic : MonoBehaviour
 
     public double GetMass()
     {
-        // TODO: ��������� ������������ �����
         return (Math.PI * radius * radius) * length * MaterialType.GetDensity();
     }
 }
