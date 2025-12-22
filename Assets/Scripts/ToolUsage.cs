@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.Custom;
 using UnityEngine.XR.Interaction.Toolkit;
@@ -7,9 +8,10 @@ using UnityEngine.XR.Interaction.Toolkit;
 public class ToolUsage : MonoBehaviour, IHoverable
 {
     [SerializeField] private Transform rightHand;
+    [SerializeField] private TextDisplay textDisplay;
     [SerializeField] private float maxDistance = 3f;
 
-    public double Value { get; private set; }
+    public double Value { get; private set; } = 0;
     private ITool tool;
     private Take take;
 
@@ -30,17 +32,15 @@ public class ToolUsage : MonoBehaviour, IHoverable
 
             float distance = Vector3.Distance(rightHand.position, cylinder.transform.position);
             if (distance > maxDistance)
-            {
-                Value = 0;
                 return;
-            }
 
             Value = tool.Use(cylinderLogic);
+            textDisplay.SetValue(Math.Round(Value, 6).ToString());
         }
     }
 
-    public void OnHoverExit(HoverEnterEventArgs args)
+    public void OnHoverExit(HoverExitEventArgs args)
     {
-        Value = 0;
+        textDisplay.ResetValue();
     }
 }

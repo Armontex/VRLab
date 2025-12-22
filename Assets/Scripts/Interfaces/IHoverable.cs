@@ -6,6 +6,6 @@ namespace UnityEngine.Custom
     {
         void OnHoverEnter(HoverEnterEventArgs args);
 
-        void OnHoverExit(HoverEnterEventArgs args);
+        void OnHoverExit(HoverExitEventArgs args);
     }
 }

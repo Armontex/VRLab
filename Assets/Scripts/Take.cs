@@ -37,7 +37,7 @@ public class Take : MonoBehaviour, IHoverable
     }
 
     public void OnHoverEnter(HoverEnterEventArgs args) => isHovered = true;
-    public void OnHoverExit(HoverEnterEventArgs args) => isHovered = false;
+    public void OnHoverExit(HoverExitEventArgs args) => isHovered = false;
 
     private void OnTakePerformed(InputAction.CallbackContext context)
     {

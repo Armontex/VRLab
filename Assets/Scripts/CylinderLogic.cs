@@ -6,9 +6,9 @@ using UnityEngine.Custom;
 public class CylinderLogic : MonoBehaviour
 {
     // Radius
-    [SerializeField] private double baseMinRadius = 0.05;
-    [SerializeField] private double baseMaxRadius = 0.08;
-    [SerializeField] private double baseRadiusError = 0.003;
+    [SerializeField] private double baseMinRadius = 0.01;
+    [SerializeField] private double baseMaxRadius = 0.02;
+    [SerializeField] private double baseRadiusError = 0.0015;
     private double radius;
 
     // Length
@@ -35,6 +35,7 @@ public class CylinderLogic : MonoBehaviour
     {
         radius = UnityEngine.Random.Range((float)baseMinRadius, (float)baseMaxRadius);
         length = UnityEngine.Random.Range((float)baseMinLength, (float)baseMaxLength);
+        Debug.Log($"Cylinder is created. Mass: {GetMass()} | Radius: {GetRadius()} | Length: {GetLength()} | MT: {MaterialType}");
     }
 
     public double GetRadius()
