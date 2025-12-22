@@ -4,6 +4,8 @@ using UnityEngine.Custom;
 public class CalipersLogic : MonoBehaviour, ITool
 {
     [SerializeField] private double measurementError = 0.00005;
+    private const int SantiFactor = 100;
+    public string MetricUnit {get;} = "см";
 
     protected double GetLength(CylinderLogic cylinder)
     {
@@ -16,6 +18,6 @@ public class CalipersLogic : MonoBehaviour, ITool
     {
         double measuredLength = GetLength(cylinderLogic);
         Debug.Log($"Calipers used: {measuredLength}");
-        return measuredLength;
+        return measuredLength * SantiFactor;
     }
 }

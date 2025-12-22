@@ -35,7 +35,7 @@ public class ToolUsage : MonoBehaviour, IHoverable
                 return;
 
             Value = tool.Use(cylinderLogic);
-            textDisplay.SetValue(Math.Round(Value, 6).ToString());
+            textDisplay.SetValue(Math.Round(Value, 6).ToString() + " " + tool.MetricUnit);
         }
     }
 

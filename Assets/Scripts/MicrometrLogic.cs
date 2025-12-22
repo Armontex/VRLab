@@ -4,6 +4,8 @@ using UnityEngine.Custom;
 public class MicrometrLogic : MonoBehaviour, ITool
 {
     [SerializeField] private double measurementError = 1e-6;
+    private const int MillimetrFactor = 1000;
+    public string MetricUnit {get;} = "мм";
 
     protected double GetDiameter(CylinderLogic cylinder)
     {
@@ -16,6 +18,6 @@ public class MicrometrLogic : MonoBehaviour, ITool
     {
         double measuredDiameter = GetDiameter(cylinderLogic);
         Debug.Log($"Micrometr used: {measuredDiameter}");
-        return measuredDiameter;
+        return measuredDiameter * MillimetrFactor;
     }
 }
