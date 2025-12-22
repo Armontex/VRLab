@@ -6,13 +6,13 @@ public class ScaleTrigger : MonoBehaviour
     void Start()
     {
         parentScale = GetComponentInParent<ScalePlatform>();
-        if (parentScale == null)
-            Debug.LogError("�� ������ ScalePlatform �� ��������!");
+        // if (parentScale == null)
+        //     Debug.LogError("�� ������ ScalePlatform �� ��������!");
     }
 
     void OnTriggerEnter(Collider other)
     {
-        Debug.Log($"� ������� �����: {other.name}");
+        // Debug.Log($"� ������� �����: {other.name}");
 
         if (parentScale != null && !other.CompareTag("IgnoreScale"))
         {
@@ -22,7 +22,7 @@ public class ScaleTrigger : MonoBehaviour
 
     void OnTriggerExit(Collider other)
     {
-        Debug.Log($"�� �������� �����: {other.name}");
+        // Debug.Log($"�� �������� �����: {other.name}");
 
         if (parentScale != null)
         {

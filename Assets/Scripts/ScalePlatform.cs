@@ -7,7 +7,7 @@ public class ScalePlatform : MonoBehaviour
     public void ObjectPlaced(GameObject obj)
     {
         objectOnScale = obj;
-        Debug.Log($"На весы поставлен: {obj.name}");
+        // Debug.Log($"пїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ: {obj.name}");
     }
 
     public void ObjectRemoved(GameObject obj)
@@ -15,13 +15,13 @@ public class ScalePlatform : MonoBehaviour
         if (obj == objectOnScale)
         {
             objectOnScale = null;
-            Debug.Log($"С весов убран: {obj.name}");
+            // Debug.Log($"пїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ: {obj.name}");
         }
     }
 
     public GameObject GetObjectOnScale()
     {
-        Debug.Log($"Запрос объекта: {(objectOnScale != null ? objectOnScale.name : "null")}");
+        // Debug.Log($"пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ: {(objectOnScale != null ? objectOnScale.name : "null")}");
         return objectOnScale;
     }
 }

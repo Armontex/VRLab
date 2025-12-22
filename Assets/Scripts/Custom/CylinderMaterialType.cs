@@ -4,7 +4,7 @@ namespace UnityEngine.Custom
 {
     public enum CylinderMaterialType
     {
-        Wood,     // 7000
+        Wood,     // 700
         Gold,     // 19300 
         Platinum, // 21500
         Lead,     // 11300

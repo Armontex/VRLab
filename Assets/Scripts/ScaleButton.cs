@@ -15,17 +15,17 @@ public class ScaleButton : MonoBehaviour
 
         if (interactable == null)
         {
-            Debug.LogError("��� XRSimpleInteractable �� ������!");
+            // Debug.LogError("��� XRSimpleInteractable �� ������!");
             return;
         }
 
         interactable.selectEntered.AddListener(OnButtonPressed);
-        Debug.Log("������ ������ � ������ � VR");
+        // Debug.Log("������ ������ � ������ � VR");
     }
 
     void OnButtonPressed(SelectEnterEventArgs args)
     {
-        Debug.Log("������ ������ � VR!");
+        // Debug.Log("������ ������ � VR!");
         Weigh();
     }
 
@@ -33,14 +33,14 @@ public class ScaleButton : MonoBehaviour
     {
         if (scale == null)
         {
-            Debug.LogError("�� ��������� ����!");
+            // Debug.LogError("�� ��������� ����!");
             return;
         }
 
         GameObject obj = scale.GetObjectOnScale();
         if (obj == null)
         {
-            Debug.Log("�� ����� ������ ���");
+            // Debug.Log("�� ����� ������ ���");
             if (resultText != null) resultText.text = "�����";
             return;
         }
@@ -49,10 +49,10 @@ public class ScaleButton : MonoBehaviour
         if (cylinder != null)
         {
             double mass = cylinder.GetMass();
-            Debug.Log($"�����: {mass:F4} ��");
+            // Debug.Log($"�����: {mass:F4} ��");
 
             if (resultText != null)
-                resultText.text = $"{mass:F4} ��";
+                resultText.text = $"{mass:F6} kg";
         }
         else
         {
