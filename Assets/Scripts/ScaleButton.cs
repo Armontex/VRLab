@@ -1,30 +1,33 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.Custom;
 using UnityEngine.InputSystem;
 using UnityEngine.XR.Interaction.Toolkit;
 using UnityEngine.XR.Interaction.Toolkit.Interactables;
 
-public class ScaleButton : MonoBehaviour
+public class ScaleButton : MonoBehaviour, IHoverable
 {
-    public ScalePlatform scale;
-    public TMP_Text resultText;
-    [SerializeField] private InputActionReference takeActionReference;
+    [SerializeField] private ScalePlatform scale;
+    [SerializeField] private TMP_Text resultText;
+    [SerializeField] private InputActionReference pressBtnActionReference;
+
+    private bool isHovered = false;
 
     private void OnEnable()
     {
-        if (takeActionReference != null && takeActionReference.action != null)
+        if (pressBtnActionReference != null && pressBtnActionReference.action != null)
         {
-            takeActionReference.action.Enable();
-            takeActionReference.action.performed += OnControllerButtonPressed;
+            pressBtnActionReference.action.Enable();
+            pressBtnActionReference.action.performed += OnControllerButtonPressed;
         }
     }
 
     private void OnDisable()
     {
-        if (takeActionReference != null && takeActionReference.action != null)
+        if (pressBtnActionReference != null && pressBtnActionReference.action != null)
         {
-            takeActionReference.action.performed -= OnControllerButtonPressed;
-            takeActionReference.action.Disable();
+            pressBtnActionReference.action.performed -= OnControllerButtonPressed;
+            pressBtnActionReference.action.Disable();
         }
     }
 
@@ -44,6 +47,7 @@ public class ScaleButton : MonoBehaviour
     {
         if (context.performed)
         {
+            if (!isHovered) return;
             Weigh();
         }
     }
@@ -73,12 +77,22 @@ public class ScaleButton : MonoBehaviour
             double mass = cylinder.GetMass();
 
             if (resultText != null)
-                resultText.text = $"{mass:F6} kg";
+                resultText.text = $"{mass:F6} кг";
         }
         else
         {
             Debug.Log("Нет цилиндра");
             if (resultText != null) resultText.text = "Ошибка";
         }
+    }
+
+    public void OnHoverEnter(HoverEnterEventArgs args)
+    {
+        isHovered = true;
+    }
+
+    public void OnHoverExit(HoverExitEventArgs args)
+    {
+        isHovered = false;
     }
 }

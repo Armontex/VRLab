@@ -1,7 +1,9 @@
+using TMPro;
 using UnityEngine;
 
 public class ScalePlatform : MonoBehaviour
 {
+    [SerializeField] private TMP_Text resultText;
     private GameObject objectOnScale;
 
     public void ObjectPlaced(GameObject obj)
@@ -15,6 +17,7 @@ public class ScalePlatform : MonoBehaviour
         if (obj == objectOnScale)
         {
             objectOnScale = null;
+            resultText.text = "0.000 кг";
             // Debug.Log($"� ����� �����: {obj.name}");
         }
     }
