@@ -1,31 +1,55 @@
+using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
+using UnityEngine.InputSystem;
 using UnityEngine.XR.Interaction.Toolkit;
 using UnityEngine.XR.Interaction.Toolkit.Interactables;
-using TMPro;
 
 public class ScaleButton : MonoBehaviour
 {
     public ScalePlatform scale;
     public TMP_Text resultText;
-    
+    [SerializeField] private InputActionReference takeActionReference;
+
+    private void OnEnable()
+    {
+        if (takeActionReference != null && takeActionReference.action != null)
+        {
+            takeActionReference.action.Enable();
+            takeActionReference.action.performed += OnControllerButtonPressed;
+        }
+    }
+
+    private void OnDisable()
+    {
+        if (takeActionReference != null && takeActionReference.action != null)
+        {
+            takeActionReference.action.performed -= OnControllerButtonPressed;
+            takeActionReference.action.Disable();
+        }
+    }
+
     void Start()
     {
         XRSimpleInteractable interactable = GetComponent<XRSimpleInteractable>();
 
         if (interactable == null)
         {
-            // Debug.LogError("��� XRSimpleInteractable �� ������!");
             return;
         }
 
         interactable.selectEntered.AddListener(OnButtonPressed);
-        // Debug.Log("������ ������ � ������ � VR");
+    }
+
+    private void OnControllerButtonPressed(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            Weigh();
+        }
     }
 
     void OnButtonPressed(SelectEnterEventArgs args)
     {
-        // Debug.Log("������ ������ � VR!");
         Weigh();
     }
 
@@ -33,15 +57,13 @@ public class ScaleButton : MonoBehaviour
     {
         if (scale == null)
         {
-            // Debug.LogError("�� ��������� ����!");
             return;
         }
 
         GameObject obj = scale.GetObjectOnScale();
         if (obj == null)
         {
-            // Debug.Log("�� ����� ������ ���");
-            if (resultText != null) resultText.text = "�����";
+            if (resultText != null) resultText.text = "Пусто";
             return;
         }
 
@@ -49,15 +71,14 @@ public class ScaleButton : MonoBehaviour
         if (cylinder != null)
         {
             double mass = cylinder.GetMass();
-            // Debug.Log($"�����: {mass:F4} ��");
 
             if (resultText != null)
                 resultText.text = $"{mass:F6} kg";
         }
         else
         {
-            Debug.Log("�� �������");
-            if (resultText != null) resultText.text = "������";
+            Debug.Log("Нет цилиндра");
+            if (resultText != null) resultText.text = "Ошибка";
         }
     }
 }

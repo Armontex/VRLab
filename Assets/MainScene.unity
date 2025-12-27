@@ -19175,6 +19175,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: '::'
   scale: {fileID: 860306911}
   resultText: {fileID: 1385747215}
+  takeActionReference: {fileID: -7669451619127323053, guid: c760d5bde7a824d4c915183c9fa6d660, type: 3}
 --- !u!114 &1909576799
 MonoBehaviour:
   m_ObjectHideFlags: 0
